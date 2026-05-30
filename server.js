@@ -28,6 +28,21 @@ app.use(express.static(path.join(__dirname, 'public')));
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
+  // If a full MONGO_URI wasn't provided, allow constructing it from components
+  // Useful when deploying to hosts that expose separate vars (user/pass/host/db)
+  if (!process.env.MONGO_URI && process.env.MONGO_USER && process.env.MONGO_HOST && process.env.MONGO_DB) {
+    const user = encodeURIComponent(process.env.MONGO_USER);
+    const pass = process.env.MONGO_PASS ? encodeURIComponent(process.env.MONGO_PASS) : '';
+    const host = process.env.MONGO_HOST; // can be host:port or atlas host
+    const db = process.env.MONGO_DB;
+    const srv = process.env.MONGO_SRV === 'true' || process.env.MONGO_HOST?.includes('mongodb+srv');
+
+    const credentials = pass ? `${user}:${pass}@` : `${user}@`;
+    const protocol = srv ? 'mongodb+srv' : 'mongodb';
+
+    process.env.MONGO_URI = `${protocol}://${credentials}${host}/${db}?retryWrites=true&w=majority`;
+    console.log('Constructed MONGO_URI from components. Using:', process.env.MONGO_URI.replace(/:.+@/, ':*****@'));
+  }
   if (process.env.AUTO_START_MONGO === 'true') {
     const mongoStarted = await startMongo();
     if (!mongoStarted) {
