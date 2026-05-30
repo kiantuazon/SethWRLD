@@ -1,0 +1,8 @@
+[build]
+  publish = "public"
+  # During Netlify build, write a small client config file from the API_BASE_URL env var
+  command = "bash -lc 'if [ -z \"$API_BASE_URL\" ]; then echo \"window.__API_BASE_URL=\\\"http://127.0.0.1:5000/api\\\";\" > public/config.js; else echo \"window.__API_BASE_URL=\\\"$API_BASE_URL\\\";\" > public/config.js; fi'"
+
+[context.production.environment]
+# You should set API_BASE_URL in Netlify site settings to your backend URL, e.g. https://api.example.com/api
+# API_BASE_URL = "https://api.example.com/api"
