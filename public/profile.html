@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Member Profile</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="footer.css">
+</head>
+<body>
+    <div id="loadingScreen" class="loading-screen active">
+        <div class="loading-spinner">
+            <img src="logo-screen.png" alt="Seth Shoes Station logo" class="loading-logo">
+        </div>
+    </div>
+
+    <header class="top-bar">
+        <div class="menu-container">
+            <div class="menu-icon" role="button" tabindex="0" aria-label="Open menu" aria-expanded="false">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-dropdown" id="menuDropdown" aria-label="Menu options">
+                <nav class="sidebar-nav">
+                    <a href="index.html" class="nav-link">HOME</a>
+                    <a href="#" class="nav-link shop-trigger" data-submenu="shop">SHOP <span class="arrow">→</span></a>
+                </nav>
+                <div class="menu-bottom">
+                    <p class="account-label">My Account</p>
+                    <button class="btn btn-login">LOGIN</button>
+                    <button class="btn btn-register">REGISTER</button>
+                </div>
+            </div>
+
+            <div class="submenu-panel" id="shopSubmenu" data-submenu="shop">
+                <button class="submenu-back" aria-label="Back to menu">← BACK</button>
+                <nav class="submenu-nav">
+                    <a href="top.html" class="submenu-link">TOP</a>
+                    <a href="bottom.html" class="submenu-link">BOTTOM</a>
+                    <a href="shoes.html" class="submenu-link">SHOES</a>
+                </nav>
+            </div>
+        </div>
+
+        <div class="logo">
+            <img src="logo.png" alt="Seth Shoes Station Logo" class="logo-img">
+        </div>
+
+        <div class="right-section">
+            <input type="text" placeholder="search bar" class="search-bar">
+            <button class="profile-button" id="profileBtn" aria-label="Open profile menu">
+                <span class="profile-icon" aria-hidden="true">
+                    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="10" />
+                        <path d="M12 16c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" />
+                        <path d="M6.13 18.25C6.91 16.39 8.85 15 12 15s5.09 1.39 5.87 3.25" />
+                    </svg>
+                </span>
+            </button>
+            <div class="profile-menu" id="profileMenu">
+                <div class="profile-menu-header">
+                    <div class="profile-menu-avatar">
+                        <svg viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <path d="M12 16c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5z" />
+                            <path d="M6.13 18.25C6.91 16.39 8.85 15 12 15s5.09 1.39 5.87 3.25" />
+                        </svg>
+                    </div>
+                    <div class="profile-menu-info">
+                        <p class="profile-name">My Account</p>
+                        <p class="profile-email" id="profileEmail"></p>
+                    </div>
+                </div>
+                <div class="profile-menu-divider"></div>
+                <nav class="profile-menu-nav">
+                    <a href="profile.html" class="profile-menu-item" data-action="profile">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <circle cx="12" cy="8" r="3" />
+                            <path d="M12 14c-6 0-8 3-8 3v6h16v-6s-2-3-8-3z" />
+                        </svg>
+                        <span>View Profile</span>
+                    </a>
+                    <a href="profile.html" class="profile-menu-item" data-action="settings">
+                        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                            <path d="M19.14 12.94c.04-.3.06-.61.06-.94 0-.32-.02-.64-.07-.94l1.72-1.34c.15-.12.19-.34.1-.51l-1.63-2.83c-.12-.22-.37-.29-.59-.22l-2.03.81c-.42-.32-.9-.6-1.44-.84l-.3-2.15c-.03-.24-.24-.41-.48-.41h-3.26c-.24 0-.43.17-.46.41l-.3 2.15c-.54.24-1.02.52-1.44.84l-2.03-.81c-.23-.09-.47-.01-.59.22L2.74 8.87c-.1.16-.06.39.1.51l1.72 1.34c-.05.3-.07.62-.07.94s.02.64.07.94l-1.72 1.34c-.16.13-.2.35-.1.51l1.63 2.83c.12.22.37.29.59.22l2.03-.81c.42.32.9.6 1.44.84l.3 2.15c.03.24.24.41.48.41h3.26c.24 0 .43-.17.46-.41l.3-2.15c.54-.24 1.02-.52 1.44-.84l2.03.81c.23.09.47.01.59-.22l1.63-2.83c.1-.16.06-.38-.1-.51l-1.72-1.34zM12 15.6c-1.98 0-3.6-1.62-3.6-3.6s1.62-3.6 3.6-3.6 3.6 1.62 3.6 3.6-1.62 3.6-3.6 3.6z" />
+                        </svg>
+                        <span>Settings</span>
+                    </a>
+                </nav>
+                <div class="profile-menu-divider" id="logoutDivider" style="display: none;"></div>
+                <a href="#" class="profile-menu-logout" id="profileLogout" style="display: none;">
+                    <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor">
+                        <path d="M17 7l-1.41 1.41L18.17 11H8v2h10.17l-2.58 2.58L17 17l5-5zM4 5h8V3H4c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h8v-2H4V5z" />
+                    </svg>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div class="discount-carousel">
+        <div class="carousel-track">
+            <div class="carousel-item">CHAT WITH US</div>
+            <div class="carousel-item">RESTOCKED ITEMS</div>
+            <div class="carousel-item">NEW COLLECTION OUT NOW</div>
+            <div class="carousel-item">VISIT OUR STORE</div>
+            <div class="carousel-item">50% OFF SELECTED SNEAKERS</div>
+        </div>
+    </div>
+
+    <main class="content">
+        <section class="hero">
+            <div class="hero-copy">
+                <span class="eyebrow">Account</span>
+                <h1>Member Profile</h1>
+                <p>Review your account details and manage your profile securely.</p>
+            </div>
+        </section>
+
+     
+            </div>
+        </section>
+    </main>
+
+    <div class="modal" id="loginModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close login modal">×</button>
+            <h2 class="modal-title">LOGIN</h2>
+            <form class="auth-form" id="loginForm">
+                <div class="form-group">
+                    <label for="login-email">Email</label>
+                    <input type="email" id="login-email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="login-password">Password</label>
+                    <input type="password" id="login-password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="login-show-password" name="loginShowPassword">
+                    <label for="login-show-password" class="checkbox-label">See password</label>
+                </div>
+                <button type="submit" class="btn submit-btn">LOGIN</button>
+                <p class="form-status" id="loginStatus"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="registerModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close register modal">×</button>
+            <h2 class="modal-title">REGISTER</h2>
+            <form class="auth-form" id="registerForm">
+                <div class="form-group">
+                    <label for="register-name">Full Name</label>
+                    <input type="text" id="register-name" name="fullName" placeholder="Your Name" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-email">Email</label>
+                    <input type="email" id="register-email" name="email" placeholder="your@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-password">Password</label>
+                    <input type="password" id="register-password" name="password" placeholder="••••••••" required>
+                </div>
+                <div class="form-group">
+                    <label for="register-confirm-password">Confirm Password</label>
+                    <input type="password" id="register-confirm-password" name="confirmPassword" placeholder="••••••••" required>
+                </div>
+                <div class="form-group checkbox">
+                    <input type="checkbox" id="register-show-password" name="registerShowPassword">
+                    <label for="register-show-password" class="checkbox-label">See password</label>
+                </div>
+                <button type="submit" class="btn submit-btn">REGISTER</button>
+                <p class="form-status" id="registerStatus"></p>
+            </form>
+        </div>
+    </div>
+
+    <div class="modal" id="verificationModal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" aria-label="Close verification modal">×</button>
+            <h2 class="modal-title">Verify Your Email</h2>
+            <form class="auth-form" id="verificationForm">
+                <div class="form-group">
+                    <label for="verification-code">Verification Code</label>
+                    <input type="text" id="verification-code" name="code" placeholder="Enter code" required>
+                </div>
+                <button type="submit" class="btn submit-btn">VERIFY</button>
+                <button type="button" class="btn secondary-btn" id="resendCodeBtn">Resend Code</button>
+                <p class="form-status" id="verificationStatus"></p>
+            </form>
+        </div>
+    </div>
+
+    <div id="page-footer"></div>
+    <script src="index.js"></script>
+</body>
+</html>
