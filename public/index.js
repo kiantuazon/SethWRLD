@@ -464,33 +464,20 @@ document.addEventListener('DOMContentLoaded', () => {
                         <h4 class="footer-title">Contact</h4>
 
                         <div class="footer-contact">
-                            <a class="footer-link" href="tel:+2348000000000" aria-label="Call us">
-                                <span class="footer-link-icon" aria-hidden="true">☎</span>
-                                +234 800 000 0000
-                            </a>
-                            <a class="footer-link" href="mailto:hello@sethshoesstation.com" aria-label="Email us">
-                                <span class="footer-link-icon" aria-hidden="true">✉</span>
-                                hello@sethshoesstation.com
-                            </a>
-                        </div>
+                                <a class="footer-link" href="tel:+2348000000000" aria-label="Call us">
+                                    <span class="footer-link-icon" aria-hidden="true">☎</span>
+                                    0917 545 2272
+                                </a>
+                            </div>
 
-                        <div class="footer-divider" role="separator" aria-hidden="true"></div>
+                            <div class="footer-divider" role="separator" aria-hidden="true"></div>
 
-                        <h4 class="footer-title">Social</h4>
-                        <div class="footer-social">
-                            <a class="social-icon" href="https://www.facebook.com/profile.php?id=61557322911974&sk=directory_basic_info" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
-                                <span aria-hidden="true">f</span>
-                            </a>
-                            <a class="social-icon" href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-                                <span aria-hidden="true">⌁</span>
-                            </a>
-                            <a class="social-icon" href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
-                                <span aria-hidden="true">♪</span>
-                            </a>
-                            <a class="social-icon" href="https://x.com/" target="_blank" rel="noopener noreferrer" aria-label="Twitter/X">
-                                <span aria-hidden="true">𝕏</span>
-                            </a>
-                        </div>
+                            <h4 class="footer-title">Social</h4>
+                            <div class="footer-social">
+                                <a class="social-icon" href="https://www.facebook.com/profile.php?id=61557322911974&sk=directory_basic_info" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                    <span aria-hidden="true">f</span>
+                                </a>
+                            </div>
                     </div>
                 </section>
 
