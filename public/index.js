@@ -81,6 +81,54 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
+        const smoothScrollTarget = (href) => {
+            if (!href) return null;
+            const hashIndex = href.indexOf('#');
+            if (hashIndex === -1) return null;
+            return href.slice(hashIndex + 1);
+        };
+
+        const isSamePageLink = (href) => {
+            if (!href) return false;
+            if (href.trim().startsWith('#')) return true;
+            const linkUrl = new URL(href, window.location.href);
+            const currentPath = window.location.pathname.replace(/\/index\.html$/, '/');
+            const linkPath = linkUrl.pathname.replace(/\/index\.html$/, '/');
+            return linkPath === currentPath || linkPath === '' || linkPath === '/' || linkPath === '.';
+        };
+
+        const scrollToSection = (id) => {
+            const target = document.getElementById(id);
+            if (!target) return;
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        };
+
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('a[href="#footer-contact"], a[href="#about"]');
+            if (!link) return;
+            const targetId = link.hash.replace('#', '');
+            const target = document.getElementById(targetId);
+            if (!target) return;
+            event.preventDefault();
+            if (menuDropdown.classList.contains('open')) {
+                closeMenu();
+                setTimeout(() => scrollToSection(targetId), 120);
+            } else {
+                scrollToSection(targetId);
+            }
+        });
+
+        const smoothScrollFromHash = () => {
+            const hash = window.location.hash;
+            if (!hash) return;
+            const id = hash.substring(1);
+            const target = document.getElementById(id);
+            if (!target) return;
+            setTimeout(() => scrollToSection(id), 100);
+        };
+
+        smoothScrollFromHash();
+
         // Keyboard navigation for menu
         menuDropdown.addEventListener('keydown', (event) => {
             const menuItems = menuDropdown.querySelectorAll('.nav-link');
@@ -273,10 +321,12 @@ document.addEventListener('DOMContentLoaded', () => {
     handleCloseBtn(registerModal);
     handleCloseBtn(verificationModal);
 
-    // API Configuration
-    const API_BASE_URL = window.location.protocol === 'file:'
-        ? 'http://127.0.0.1:5000/api'
-        : `${window.location.protocol}//${window.location.hostname}:5000/api`;
+    // API Configuration — prefer build-time `window.__API_BASE_URL` (Netlify)
+    const API_BASE_URL = (typeof window !== 'undefined' && window.__API_BASE_URL)
+        ? window.__API_BASE_URL
+        : (window.location.protocol === 'file:'
+            ? 'http://127.0.0.1:5000/api'
+            : `${window.location.protocol}//${window.location.hostname}:5000/api`);
     const authTokenKey = 'webtechAuthToken';
     const authUserKey = 'webtechAuthUser';
     let userAuthData = null;
